@@ -4,24 +4,161 @@
 }
 
 #header {
-  background-color: lightpink;
+  background-color: rgb(255, 255, 255);
   height: 30vh;
+  width :60%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items:center;
+}
+
+#clue {
+  background-color: rgb(255, 255, 255);
+  height: 30vh;
+  width: 40%;
+  margin-left: 60%;
+  top:5%;
+  position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
+  align-items:center;
+}
+
+#stats1 {
+  background-color: rgb(255, 255, 255);             /*For Null tries*/
+  height: 10vh;
+  width: 40%;
+  margin-left: 60%;
+  top:35%;
+  position: absolute;
+  display: flex;
+  justify-content: space-evenly;
+  align-items:center;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-align: left;
+  font-size: 30px;
+  color:red;
+}
+
+#stats2 {
+  background-color: rgb(255, 255, 255);            /*For Lives*/
+  height: 10vh;
+  width: 40%;
+  margin-left: 60%;
+  top:45%;
+  position: absolute;
+  display: flex;
+  justify-content: space-evenly;
+  align-items:center;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-align: left;
+  font-size: 30px;
+  color:red;
+}
+
+#stats3 {
+  background-color: rgb(255, 255, 255);               /*For Score*/
+  height: 10vh;
+  width: 40%;
+  margin-left: 60%;
+  top:55%;
+  position: absolute;
+  display: flex;
+  justify-content: space-evenly;
+  align-items:center;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-align: left;
+  font-size: 30px;
+  color:red;
+}
+
+#stats4 {
+  background-color: rgb(255, 255, 255);                /*For Round*/
+  height: 10vh;
+  width: 40%;
+  margin-left: 60%;
+  top:65%;
+  position: absolute;
+  display: flex;
+  justify-content: space-evenly;
+  align-items:center;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-align: left;
+  font-size: 30px;
+  color:red;
+}
+
+#but {
+  height: 10vh;
+  width: 37%;
+  margin-left: 61%;
+  top: 80%;
+  position: absolute;
+  align-items:center;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.bt{
+  background-color: white;
+  border-color: white;
+  border-width: 0;
+  outline: 0;
+}
+
+.button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+p{
+  font-family: 'Press Start 2P', cursive;
+  font-size: 50px;
+  text-align: center;
+  color:mediumspringgreen  
+}
+
+#container1 {
+  background-color: rgb(255, 255, 255);                     /*Tiles of upper row*/
+  height: 35vh;
+  width: 60%;
+  display: flex;
+  justify-content:space-around;
   align-items: center;
 }
 
-#container {
-  background-color: black;
-  height: 70vh;
+#container2 {
+  background-color: rgb(255, 255, 255);                    /*Tiles of lower row*/
+  height: 35vh;
+  width: 60%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content:space-around;
   align-items: center;
 }
 
 .tile {
-  height: 200px;
+  height:200px;
   width: 200px;
+  border-radius: 30%;
   background-color: aliceblue;
 }

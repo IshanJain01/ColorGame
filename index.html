@@ -4,24 +4,75 @@
   <head>
     <title>Color Game</title>
     <link rel="stylesheet" href="./index.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Press+Start+2P&display=swap" rel="stylesheet"/>
   </head>
-  <body onload="newGame()">
+
+  <body onload="newGame(), btn3()">
     <div id="header">
-      <h2>The Great</h2>
-      <h1 id="header-clue">rgb(xxx,xxx,xxx)</h1>
-      <h2>Guessing Game</h2>
+      <p>The Great Color <br />Guessing Game</p>
     </div>
-    <div id="container">
-      <div class="tile" id="1"></div>
-      <div class="tile" id="2"></div>
+
+    <div id="clue">
+      <h1 id="header-clue1">rgb(xxx,xxx,xxx)</h1>
+      <h1 id="header-clue2">#xxxxxx</h1>
     </div>
+
+    <div id="stats1">
+      <h2>Null tries : </h2>
+      <h1 class="ill-try">(..)</h1>
+    </div>
+
+    <div id="stats2">
+      <h2>Lives : </h2>
+      <h1 class="live">(..)</h1>
+    </div>
+
+    <div id="stats3">
+      <h2>Score : </h2>
+      <h1 class="score">(..)</h1>
+    </div>
+
+    <div id="stats4">
+      <h2>Round : </h2>
+      <h1 class="round">(..)</h1>
+    </div>
+
+             <!--Buttons for interaction-->
+
+    <div id="but">
+      <button class="button" id="but1">NEXT</button>
+      <button class="button" id="but2">RESTART</button>
+      <button class="button" id="but3">INSTRUCTIONS</button>
+    </div>
+
+    <div id="container1">
+      <button class="bt"><div class="tile" id="1"></div></button>
+      <button class="bt"><div class="tile" id="2"></div></button>
+      <button class="bt"><div class="tile" id="3"></div></button>
+    </div>
+
+    <div id="container2">
+      <button class="bt"><div class="tile" id="4"></div></button>
+      <button class="bt"><div class="tile" id="5"></div></button>
+      <button class="bt"><div class="tile" id="6"></div></button>
+    </div>
+
+            <!--JavaScript part of the webpage-->
 
     <script>
       var t1 = document.getElementById("1");
       var t2 = document.getElementById("2");
+      var t3 = document.getElementById("3");
+      var t4 = document.getElementById("4");                   //Various variables
+      var t5 = document.getElementById("5");
+      var t6 = document.getElementById("6");
       var x;
       var correctColor;
-
+      var f1, f2, f3, f4, f5, f6, fn ;                //Variables for disabling tiles after one click
+      var c1, c2, c3, c4, c5, c6, cc ;                //Variables for storing color values in HEX form
+      
+                                                         //To generate random colors for tiles
       function getRandomColor() {
         var letters = "0123456789ABCDEF";
         var color = "#";
@@ -32,34 +83,292 @@
       }
 
       function newGame() {
-        t1.style.background = getRandomColor();
-        t2.style.background = getRandomColor();
 
-        x = Math.floor(Math.random() * 2 + 1);
+         f1 = 0;
+         f2 = 0;
+         f3 = 0;
+         f4 = 0;
+         f5 = 0;
+         f6 = 0;
+         fn = 0;
 
-        if (x == 1) correctColor = t1.style.background;
-        else correctColor = t2.style.background;
-        /* console.log(x);
-        console.log(correctColor); */
+         t1.style.background = c1 = getRandomColor();
+         t2.style.background = c2 = getRandomColor();
+         t3.style.background = c3 = getRandomColor();
+         t4.style.background = c4 = getRandomColor();
+         t5.style.background = c5 = getRandomColor();
+         t6.style.background = c6 = getRandomColor();
 
-        document.getElementById("header-clue").innerHTML = correctColor;
+        x = Math.floor(Math.random() * 6 + 1);
+
+        if (x == 1) {correctColor = t1.style.background;                       //Randomly decide which tile will show correct color
+          cc = c1; 
+        }
+        else if (x == 2) {correctColor = t2.style.background;
+          cc = c2;
+        }
+        else if (x == 3) {correctColor = t3.style.background;
+          cc = c3;
+        }
+        else if (x == 4) {correctColor = t4.style.background;
+          cc = c4;
+        }
+        else if (x == 5) {correctColor = t5.style.background;
+          cc = c5;
+        }
+        else {correctColor = t6.style.background;
+          cc = c6;
+        }
+
+        document.getElementById("header-clue1").innerHTML = correctColor;
+        document.getElementById("header-clue1").style.fontStyle = "oblique";             //To show RGB clue
+        document.getElementById("header-clue1").style.fontVariant = "small-caps";
+        document.getElementById("header-clue1").style.letterSpacing = "2px";
+        document.getElementById("header-clue1").style.fontSize = "60px";
+
+        document.getElementById("header-clue2").innerHTML = cc;
+        document.getElementById("header-clue2").style.fontStyle = "oblique";            //To show HEX clue
+        document.getElementById("header-clue2").style.fontVariant = "small-caps";
+        document.getElementById("header-clue2").style.letterSpacing = "2px";
+        document.getElementById("header-clue2").style.fontSize = "60px";
+
+        document.getElementById("but1").disabled = true;
       }
+
+       //For updating counter
+
+      let counterDisplayElem = document.querySelector(".ill-try");
+      let count = 0;
+
+      updateDisplayc();
+
+      function updateDisplayc() {
+        counterDisplayElem.innerHTML = count;
+      }
+
+      //For updating lives
+
+      let liveDisplayElem = document.querySelector(".live");
+      let live = 5;
+
+      updateDisplayl();
+
+      function updateDisplayl() {
+        liveDisplayElem.innerHTML = live;
+      }
+
+
+      //For updating scores
+
+      let scoreDisplayElem = document.querySelector(".score");
+      let score = 0;
+
+      updateDisplays();
+
+      function updateDisplays() {
+        scoreDisplayElem.innerHTML = score;
+      }
+
+
+       //For updating round
+
+      let roundDisplayElem = document.querySelector(".round");
+      let round = 1;
+
+      updateDisplayr();
+
+      function updateDisplayr() {
+        roundDisplayElem.innerHTML = round;
+      }
+
+      
+      //Using NEXT button
+
+      document.getElementById("but1").onclick = function() {btn1()};
+
+      function btn1() {
+
+        if(count >= 2){                          //To deduct the lives
+          live--;
+          updateDisplayl();
+        }
+        count = 0;
+        updateDisplayc();
+
+        if(live == 0){                              //To end the GAME
+
+          if(alert('Game Over !!\n\nYour final score : '+ score)){}
+          else    window.location.reload();
+
+        }
+        newGame();
+
+        round++;
+        updateDisplayr();
+      }
+
+              //Using RESTART button
+
+      document.getElementById("but2").onclick = function() {btn2()};
+
+      function btn2() {                               //To restart the game
+        location.reload();
+      }
+
+              //Using INSTRUCTIONS button
+
+      document.getElementById("but3").onclick = function() {btn3()};
+
+      function btn3() {                               //To see instructions of the game
+        window.alert('INSTRUCTIONS\n\n>> Guess a colour using its RGB and HEX values\n>> Initial lives = 5\n>> Scoring : (5 - No. of null tries) will be added each round\n>> Two or more null trries cuts one life');
+      }
+
 
       t1.addEventListener("click", function () {
         if (t1.style.background == correctColor) {
           t2.style.background = correctColor;
-          document.getElementById("header").style.background = correctColor;
-        } else {
-          t1.style.background = "black";
+          t3.style.background = correctColor;
+          t4.style.background = correctColor;
+          t5.style.background = correctColor;
+          t6.style.background = correctColor;
+
+          fn++;
+          if(fn == 1){
+          score += (5-count);          
+          updateDisplays();
+          }
+          document.getElementById("but1").disabled = false;
+        } 
+        else {
+          f1++;
+          t1.style.background = "white";
+          if(f1 == 1){
+            count++;
+            updateDisplayc();
+          } 
         }
       });
 
       t2.addEventListener("click", function () {
         if (t2.style.background == correctColor) {
           t1.style.background = correctColor;
-          document.getElementById("header").style.background = correctColor;
-        } else {
-          t2.style.background = "black";
+          t3.style.background = correctColor;
+          t4.style.background = correctColor;
+          t5.style.background = correctColor;
+          t6.style.background = correctColor;
+          fn++;
+          if(fn == 1){
+          score += (5-count);          
+          updateDisplays();
+          }
+          document.getElementById("but1").disabled = false;
+        } 
+        else {
+          f2++;
+          t2.style.background = "white";
+          if(f2 == 1){
+          count++;
+          updateDisplayc();
+          }
+        }
+      });
+
+      t3.addEventListener("click", function () {
+        if (t3.style.background == correctColor) {
+          t1.style.background = correctColor;
+          t2.style.background = correctColor;
+          t4.style.background = correctColor;
+          t5.style.background = correctColor;
+          t6.style.background = correctColor;
+          fn++;
+          if(fn == 1){
+          score += (5-count);          
+          updateDisplays();
+          }
+
+          document.getElementById("but1").disabled = false;
+        }
+         else {
+          f3++;
+          t3.style.background = "white";
+          if(f3 == 1){
+          count++;
+          updateDisplayc();
+          }
+        }
+      });
+
+      t4.addEventListener("click", function () {
+        if (t4.style.background == correctColor) {
+          t1.style.background = correctColor;
+          t2.style.background = correctColor;
+          t3.style.background = correctColor;
+          t5.style.background = correctColor;
+          t6.style.background = correctColor;
+          fn++;
+          if(fn == 1){
+          score += (5-count);          
+          updateDisplays();
+          }
+          document.getElementById("but1").disabled = false;
+        } 
+        else {
+          f4++;
+          t4.style.background = "white";
+          if(f4 == 1){
+          count++;
+          updateDisplayc();
+          }
+        }
+      });
+
+      t5.addEventListener("click", function () {
+        if (t5.style.background == correctColor) {
+          t1.style.background = correctColor;
+          t2.style.background = correctColor;
+          t3.style.background = correctColor;
+          t4.style.background = correctColor;
+          t6.style.background = correctColor;
+          fn++;
+          if(fn == 1){
+          score += (5-count);          
+          updateDisplays();
+          }
+
+          document.getElementById("but1").disabled = false;
+        } 
+        else {
+          f5++;
+          t5.style.background = "white";
+          if(f5 == 1){
+
+          count++;
+          updateDisplayc();
+          }
+        }
+      });
+
+      t6.addEventListener("click", function () {
+        if (t6.style.background == correctColor) {
+          t1.style.background = correctColor;
+          t2.style.background = correctColor;
+          t3.style.background = correctColor;
+          t4.style.background = correctColor;
+          t5.style.background = correctColor;
+          fn++;
+          if(fn == 1){
+          score += (5-count);          
+          updateDisplays();
+          }
+          document.getElementById("but1").disabled = false;
+        } 
+        else {
+          f6++;
+          t6.style.background = "white";
+          if(f6 == 1){
+          count++;
+          updateDisplayc();
+          }
         }
       });
     </script>
